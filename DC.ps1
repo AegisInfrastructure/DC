@@ -234,7 +234,7 @@ Start-Job -ScriptBlock {
     $sharexUrl = "https://github.com/ShareX/ShareX/releases/download/v18.0.1/ShareX-18.0.1-setup.exe"
     $outputPath = "$env:TEMP\ShareX-Setup.exe"
     Invoke-WebRequest -Uri $sharexUrl -OutFile $outputPath
-    Start-Process -FilePath $outputPath -ArgumentList "/S" -Wait
+    Start-Process -FilePath $outputPath -ArgumentList "/VERYSILENT" -Wait
     Remove-Item $outputPath
 }
 
