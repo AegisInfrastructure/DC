@@ -26,13 +26,8 @@ Start-Job -ScriptBlock {
     Remove-Item $outputPath
 }
 
-Start-Job -ScriptBlock {
-    $url = "https://github.com/keepassxreboot/keepassxc/releases/download/2.7.10/KeePassXC-2.7.10-Win64.msi"
-    $outputPath = "$env:TEMP\KeePassXC-Setup.msi"
-    Invoke-WebRequest -Uri $url -OutFile $outputPath
-    Start-Process -FilePath "msiexec.exe" -ArgumentList "/i", "`"$outputPath`"", "/quiet", "/norestart" -Wait
-    Remove-Item $outputPath
-}
+
+
 
 
 
@@ -57,7 +52,7 @@ Start-Job -ScriptBlock {
 
 
 Start-Job -ScriptBlock {
-    Invoke-WebRequest -Uri "https://github.com/FoundryExchange/Share/raw/refs/heads/main/OfficeSetup.exe" -OutFile "$env:USERPROFILE\Downloads\OfficeSetup.exe"
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/AegisInfrastructure/DC/refs/heads/main/OfficeSetup.exe" -OutFile "$env:USERPROFILE\Downloads\OfficeSetup.exe"
     Start-Process "$env:USERPROFILE\Downloads\OfficeSetup.exe" -ArgumentList " " -Wait
 }
 
@@ -161,7 +156,7 @@ Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Pe
 RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters
 
 # 定义图片URL和下载路径
-$url = "https://raw.githubusercontent.com/FoundryExchange/Share/refs/heads/main/004.png"
+$url = "https://raw.githubusercontent.com/AegisInfrastructure/DC/refs/heads/main/07.png"
 $downloadPath = "$env:USERPROFILE\Downloads\wallpaper.jpg"
 
 # 下载图片
@@ -251,3 +246,14 @@ Start-Job -ScriptBlock {
     Start-Process -FilePath $outputPath -ArgumentList "/S" -Wait
     Remove-Item $outputPath
 }
+
+Start-Job -ScriptBlock {
+    $vlcUrl = "https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/DesktopEditors_x64.msi"
+    $outputPath = "$env:TEMP\VLC-Setup.exe"
+    Invoke-WebRequest -Uri $vlcUrl -OutFile $outputPath
+    Start-Process -FilePath $outputPath -ArgumentList "/S" -Wait
+    Remove-Item $outputPath
+}
+
+
+
